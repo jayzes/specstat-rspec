@@ -1,5 +1,7 @@
 # Specstat Reporter for RSpec
 
+[![Build Status](https://travis-ci.org/jayzes/specstat-rspec.svg?branch=master)](https://travis-ci.org/jayzes/specstat-rspec)
+
 This is a reporter gem for Specstat - it hooks into your  RSpec suite to provide
 detailed information to the Specstat service on your specs, their runtime, and
 their success/failure rates.
