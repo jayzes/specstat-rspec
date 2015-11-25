@@ -11,7 +11,7 @@ their success/failure rates.
 Add this line to your application's Gemfile, in the test group:
 
 ```ruby
-gem 'specstat-reporter', group: :test
+gem 'specstat-rspec', group: :test
 ```
 
 And then execute:
@@ -37,7 +37,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jayzes/specstat-reporter-rspec. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jayzes/specstat-rspec. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License

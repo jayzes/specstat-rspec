@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'specstat/reporter/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "specstat-reporter"
+  spec.name          = "specstat-rspec"
   spec.version       = Specstat::Reporter::VERSION
   spec.authors       = ["Jay Zeschin"]
   spec.email         = ["jay@zeschin.org"]
 
-  spec.summary       = %q{An Rspec reporter for the Specstat service}
-  spec.homepage      = "https://github.com/jayzes/specstat-reporter"
+  spec.summary       = %q{Rspec reporter for the Specstat service}
+  spec.homepage      = "https://github.com/jayzes/specstat-rspec"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
