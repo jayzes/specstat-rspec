@@ -18,3 +18,23 @@ RSpec.configure do |config|
   end
 
 end
+
+require 'sinatra/base'
+class BackendDummy < Sinatra::Base
+  post '/api/v1/raw_test_run' do
+    halt 201
+  end
+end
+
+RSpec.configure do |c|
+  c.before(dummy_api: true) do
+    @backend_dummy_thread = Thread.new do
+      BackendDummy.run!(port: 4567)
+    end
+  end
+
+  c.after(dummy_api: true) do
+    BackendDummy.quit!
+    @backend_dummy_thread.join
+  end
+end

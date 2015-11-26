@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'running the Specstat agent within a test suite' do
+describe 'running the Specstat agent within a test suite', dummy_api: true do
 
   let(:spec_file) { Tempfile.open(['specstat_spec', '.rb']) }
 
@@ -26,10 +26,10 @@ describe 'running the Specstat agent within a test suite' do
   end
 
   it 'runs with an example file' do
-    cmd = "rspec -I #{File.expand_path('../../lib', __FILE__)} -r specstat/rspec #{spec_file.path}"
+    cmd = "SPECSTAT_ENDPOINT=http://localhost:4567 rspec -I #{File.expand_path('../../lib', __FILE__)} -r specstat/rspec #{spec_file.path}"
     result = `#{cmd}`
     expect(result).to include('Initializing Specstat...')
-    expect(result).to include('Sending 2 results to Specstat...')
+    expect(result).to include('Sending 3 results to Specstat...SUCCESS')
   end
 
 end

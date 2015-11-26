@@ -18,7 +18,6 @@ module Specstat
     end
 
     def submit!
-      Specstat::Reporter.logger.info "Sending #{@results.size} results to Specstat..."
       url = URI.parse(Reporter.endpoint)
       url.path = "/api/v1/raw_test_run"
       req = Net::HTTP::Post.new(url.to_s,
@@ -28,9 +27,10 @@ module Specstat
                                "User-Agent"     => "Specstat RSpec Reporter #{Reporter::VERSION}")
       req.body = @results.map(&:to_h).to_json
       http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true
+      http.use_ssl = (url.scheme == 'https')
       res = http.request(req)
-      res.code == 201
+      success = (res.code == "201")
+      Reporter.logger.info "Sending #{@results.size} results to Specstat...#{success ? 'SUCCESS' : 'FAILED'}"
     end
   end
 end
