@@ -20,7 +20,7 @@ module Specstat
     def submit!
       Specstat::Reporter.logger.info "Sending #{@results.size} results to Specstat..."
       url = URI.parse(Reporter.endpoint)
-      url.path = "/api/v1/test_run"
+      url.path = "/api/v1/raw_test_run"
       req = Net::HTTP::Post.new(url.to_s,
                                "Authorization"  => "Bearer #{Reporter.api_token}",
                                "Content-Type"   => "application/json",

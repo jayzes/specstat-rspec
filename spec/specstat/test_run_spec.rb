@@ -26,7 +26,7 @@ describe Specstat::TestRun do
 
   describe '#submit!' do
     let!(:stub) do
-      stub_request(:post, 'https://specstat-backend.herokuapp.com/api/v1/test_run').
+      stub_request(:post, 'https://specstat-backend.herokuapp.com/api/v1/raw_test_run').
         with(
           body: "[{\"name\":\"Specstat::Reporter has a version number\",\"status\":\"passed\",\"run_time\":1.23}]",
           headers: {
