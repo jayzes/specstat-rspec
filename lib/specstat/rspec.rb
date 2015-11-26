@@ -12,12 +12,29 @@ rescue LoadError
   # No-op
 end
 
-RSpec.configure do |c|
-  c.around(:each) do |example|
-    example.run
+class SpecstatFormatter
+  RSpec::Core::Formatters.register self,
+    :example_passed,
+    :example_pending,
+    :example_failed
+
+  def initialize(out)
+    @out = out
+  end
+
+  def example_finished(notification)
+    example = notification.example
     Specstat::Reporter.current_run.add(example)
   end
-  c.after(:all) do
-    Specstat::Reporter.current_run.submit!
-  end
+  alias example_passed example_finished
+  alias example_pending example_finished
+  alias example_failed example_finished
+end
+
+RSpec.configure do |c|
+  c.add_formatter SpecstatFormatter
+end
+
+at_exit do
+  Specstat::Reporter.current_run.submit!
 end
